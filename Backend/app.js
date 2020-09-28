@@ -15,6 +15,10 @@ var productRouter = require('./routes/product.route.js');
 var paymentMethodRouter = require('./routes/paymentMethod.route.js');
 var OrderRouter = require('./routes/order.route.js');
 
+// base de datos
+const dbManager = require ("./database.config/database.manager");
+
+
 // Set up the express app
 var app = express();
 
@@ -31,5 +35,21 @@ app.use('/categories', categoriesRouter);
 app.use('/products', productRouter);
 app.use('/paymentMethod', paymentMethodRouter);
 app.use('/orders', OrderRouter);
+app.use('/clients', ClientRouter);
+app.use('/users', UserRouter);
+
+
+dbManager.sequelizeConnection.authenticate()
+  .then(() => {
+    console.log('****Conexion establecida correctamente ****');
+    // Recrear los modelos en BD si no existen
+    dbManager.sequelizeConnection.sync().then(() => {
+        console.log("Database Synced");
+      });
+
+  })
+  .catch(err => {
+    console.error('Error al conectar a BD:', err);
+  });
 
 module.exports = app;

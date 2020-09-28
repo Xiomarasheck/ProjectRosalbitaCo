@@ -35,7 +35,7 @@ async function create (req, res) {
     }
     
     // EXECUTING THE CREATE QUERY - INSERT THE OBJECT INTO DATABASE 
-    let Category =  await model.create(newCategoryObject).then (
+    let Category =  await model.create(newOrderObject).then (
         data => {
             products = req.body.products;
             products.forEach(ArrayProducts);

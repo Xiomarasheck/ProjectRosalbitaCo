@@ -1,21 +1,21 @@
 {
   "development": {
     "username": "root",
-    "password": null,
+    "password": "rCCeF4N;k",
     "database": "database_development_rosalbita",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
+    "password": "rCCeF4N;k",
     "database": "database_test_rosalbita",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": null,
+    "password": "rCCeF4N;k",
     "database": "database_production_rosalbita",
     "host": "127.0.0.1",
     "dialect": "mysql"
