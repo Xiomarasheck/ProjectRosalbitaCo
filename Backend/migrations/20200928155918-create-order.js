@@ -40,6 +40,9 @@ module.exports = {
       PaidAt: {
         type: Sequelize.DATE
       },
+      address: {
+        type: Sequelize.STRING
+      },
       isDelivered: {
         type: Sequelize.BOOLEAN
       },
