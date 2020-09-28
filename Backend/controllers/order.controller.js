@@ -27,6 +27,7 @@ async function create (req, res) {
         totalPrice: req.body.totalPrice,
         isPaid: req.body.isPaid,
         PaidAt: req.body.PaidAt,
+        address: req.body.address,
         isDelivered: req.body.isDelivered,
         deliveredAt: req.body.deliveredAt,
         status: req.body.status,
