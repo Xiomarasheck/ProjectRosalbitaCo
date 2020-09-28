@@ -14,12 +14,18 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
+      price: {
+        type: Sequelize.DECIMAL(15,2),
+      },
       category_id: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Categories',
           key: 'id'
         },
+      },
+      image: {
+        type: Sequelize.STRING
       },
       status: {
         type: Sequelize.CHAR

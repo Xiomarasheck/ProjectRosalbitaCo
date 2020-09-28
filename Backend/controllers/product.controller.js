@@ -24,6 +24,8 @@ async function create (req, res) {
     const newObject = {
         name: req.body.name,
         description: req.body.description,
+        price: req.body.price,
+        image: req.body.image,
         category_id: req.body.category_id,
         status: req.body.status
     }
