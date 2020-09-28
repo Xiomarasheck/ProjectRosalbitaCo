@@ -5,8 +5,10 @@ Market Place Rosalbita &amp; Co
 npm install
 
 # base de datos
-config user and password database in backend/config/config.js
-CREATE DATABASE `database_development_rosalbita`CHARACTER SET utf8 COLLATE utf8_spanish_ci; 
-sequelize db:migrate
+config user and password database in backend/config/config.js.
+
+CREATE DATABASE `database_development_rosalbita`CHARACTER SET utf8 COLLATE utf8_spanish_ci. 
+
+sequelize db:migrate.
 
 
