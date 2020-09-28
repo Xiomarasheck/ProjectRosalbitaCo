@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     payment_id: DataTypes.INTEGER,
     itemsPrice: DataTypes.FLOAT,
     taxPrice: DataTypes.FLOAT,
-    shippingProce: DataTypes.FLOAT,
+    shippingPrice: DataTypes.FLOAT,
     totalPrice: DataTypes.FLOAT,
     isPaid: DataTypes.BOOLEAN,
     PaidAt: DataTypes.DATE,

@@ -1,10 +1,16 @@
+//Import Models
 const models = require('./../models');
 
-/**
- * Creation of an user
- * @param {*} userObject JSON Object with User information
+//define model to use crud
+const model = models.Product;
+
+
+/**|
+ * 
+ * @param {*} req 
+ * @param {*} res 
  */
-async function createUser (req, res) {
+async function create (req, res) {
     
     // CHECK IF THE REQUEST BODY IS EMPTY
     if (!req.body) {
@@ -15,19 +21,19 @@ async function createUser (req, res) {
     }
     
     // CREATING THE OBJECT TO PERSIST
-    const newUserObject = {
+    const newObject = {
         name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        role_id: req.body.role_id,
+        description: req.body.description,
+        category_id: req.body.category_id,
         status: req.body.status
     }
     
     // EXECUTING THE CREATE QUERY - INSERT THE OBJECT INTO DATABASE 
-    let user =  await models.User.create(newUserObject).then (
+    let product =  await model.create(newObject).then (
         data => {
             res.send(data);
         }
+
     ).catch (
         e => {
             // Print error on console
@@ -41,23 +47,23 @@ async function createUser (req, res) {
 }
 
 /**
- * GEt all users
+ * GEt all Products
  */
-async function findAllUsers (req, res){
+async function findAll (req, res){
     try {
         //Execute query
-        const users = await models.User.findAll({
+        const result = await model.findAll({
             include: [
                 {
-                  model: models.Role,
-                  as: 'role_id'
+                  model: models.Category,
+                  as: 'category_id'
                 },
             ]
         });
         
         //Send response
         res.json({
-            data: users
+            data: result
         });
 
     } catch (e) {
@@ -71,26 +77,26 @@ async function findAllUsers (req, res){
 }
 
 /**
- * Get user by id
+ * Get products by id
  */
-async function findOneUser (req, res){
+async function findOne (req, res){
     try {
-        const { idUser } = req.params;
+        const { id } = req.params;
 
         //Execute query
-        const user = await models.User.findOne({
+        const result = await model.findOne({
             where: {
-                id: idUser
+                id: id
             },
             include: [
                 {
-                  model: models.Role,
-                  as: 'role_id'
+                  model: models.Category,
+                  as: 'category_id'
                 },
             ]
         });
         //Send response
-        res.json(user);
+        res.json(result);
 
     } catch (e) {
         // Print error on console
@@ -103,9 +109,9 @@ async function findOneUser (req, res){
 }
 
 /**
- * Update user
+ * Update products
  */
-async function updateUser (req, res){
+async function update(req, res){
     try {
 
         // CHECK IF THE REQUEST BODY IS EMPTY
@@ -116,19 +122,19 @@ async function updateUser (req, res){
             return;
         }
 
-        const {idUser} = req.params;
+        const {id} = req.params;
 
         //Execute query
-        const [ updated ] = await models.User.update(req.body ,{
+        const [updated] = await model.update(req.body ,{
             where: {
-                id: idUser
+                id: id
             }
         });
 
         //Send response
         if (updated) {
-            const updatedUser = await models.User.findOne({ where: { id: idUser } });
-            return res.status(200).json({ user: updatedUser });
+            const resultUpdate = await model.findOne({ where: { id: id } });
+            return res.status(200).json({ Category: resultUpdate });
         }
 
         throw new Error('Post not found');
@@ -143,25 +149,24 @@ async function updateUser (req, res){
     }
 }
 
+
 /**
- * Delete an existen user by username
  * @param {*} req 
  * @param {*} res 
  */
-async function deleteUserByUserName (req, res){ 
+async function deleteById (req, res){ 
     try {
-        const { userName } = req.params;
+        const { id } = req.params;
 
         //Execute query
-        const deleted  = await models.User.destroy({
+        const result = await model.destroy({
             where: {
-                name: userName
+                id: id
             }
         });
 
-        if (deleted) {
-            return res.status(204).send("User deleted");
-        }
+        //Send response
+        res.json(result);
 
     } catch (e) {
         // Print error on console
@@ -171,23 +176,25 @@ async function deleteUserByUserName (req, res){
             message: "Some error occurred"
         });
     }
+
 }
+
 
 /**
  * 
  * @param {*} req 
  * @param {*} res 
  */
-async function deleteAllUsers (req, res){
+async function deleteAll (req, res){
     try {
         //Execute query
-        const users = await models.User.destroy({
+        const result = await model.destroy({
             where: {}}
         ).then(function () {});
         
         //Send response
         res.json({
-            data: users
+            data: result
         });
 
     } catch (e) {
@@ -200,9 +207,9 @@ async function deleteAllUsers (req, res){
     }
 }
 
-exports.createUser = createUser; 
-exports.findAllUsers = findAllUsers; 
-exports.findOneUser = findOneUser; 
-exports.updateUser = updateUser;
-exports.deleteUserByUserName = deleteUserByUserName;
-exports.deleteAllUsers = deleteAllUsers;
+exports.createProduct = create; 
+exports.findAllProducts = findAll; 
+exports.findOneProduct = findOne; 
+exports.updateProduct = update;
+exports.deleteProductById = deleteById;
+exports.deleteAllProducts = deleteAll;

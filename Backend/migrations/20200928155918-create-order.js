@@ -28,7 +28,7 @@ module.exports = {
       taxPrice: {
         type: Sequelize.DECIMAL(15,2),
       },
-      shippingProce: {
+      shippingPrice: {
         type: Sequelize.DECIMAL(15,2),
       },
       totalPrice: {

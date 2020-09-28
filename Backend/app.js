@@ -11,11 +11,11 @@ const http = require('http');
 // IMPORT ROUTES
 var indexRouter = require('./routes/index.js');
 var categoriesRouter = require('./routes/category.route.js');
-//var postsRouter = require('./routes/posts.route');
-
+var productRouter = require('./routes/product.route.js');
+var paymentMethodRouter = require('./routes/paymentMethod.route.js');
+var OrderRouter = require('./routes/order.route.js');
 
 // Set up the express app
-
 var app = express();
 
 app.use(logger('dev'));
@@ -24,8 +24,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 //Set the routing routes to the each script
 app.use('/', indexRouter);
 app.use('/categories', categoriesRouter);
+app.use('/products', productRouter);
+app.use('/paymentMethod', paymentMethodRouter);
+app.use('/orders', OrderRouter);
 
 module.exports = app;

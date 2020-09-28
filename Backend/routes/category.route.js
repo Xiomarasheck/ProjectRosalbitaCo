@@ -15,7 +15,7 @@ router.get('/:id', categoryController.findOneCategory);
 /**
  * category Route to create category
  */
-router.get('/',categoryController.createCategory);
+router.post('/',categoryController.createCategory);
 /**
  * PUT Route to update an category by id
  */

@@ -49,12 +49,12 @@ async function create (req, res) {
 async function findAll (req, res){
     try {
         //Execute query
-        const Categorys = await model.findAll({
+        const result = await model.findAll({
         });
         
         //Send response
         res.json({
-            data: Categorys
+            data: result
         });
 
     } catch (e) {
@@ -75,13 +75,13 @@ async function findOne (req, res){
         const { id } = req.params;
 
         //Execute query
-        const Category = await model.findOne({
+        const result = await model.findOne({
             where: {
                 id: id
             },
         });
         //Send response
-        res.json(Category);
+        res.json(result);
 
     } catch (e) {
         // Print error on console
@@ -96,7 +96,7 @@ async function findOne (req, res){
 /**
  * Update Category
  */
-async function update (req, res){
+async function update(req, res){
     try {
 
         // CHECK IF THE REQUEST BODY IS EMPTY
@@ -110,7 +110,7 @@ async function update (req, res){
         const {id} = req.params;
 
         //Execute query
-        const [ updated ] = await model.update(req.body ,{
+        const [updated] = await model.update(req.body ,{
             where: {
                 id: id
             }
@@ -118,8 +118,8 @@ async function update (req, res){
 
         //Send response
         if (updated) {
-            const updatedCategory = await model.findOne({ where: { id: id } });
-            return res.status(200).json({ Category: updatedCategory });
+            const resultUpdate = await model.findOne({ where: { id: id } });
+            return res.status(200).json({ Category: resultUpdate });
         }
 
         throw new Error('Post not found');
@@ -144,14 +144,14 @@ async function deleteById (req, res){
         const { id } = req.params;
 
         //Execute query
-        const post = await model.destroy({
+        const result = await model.destroy({
             where: {
                 id: id
             }
         });
 
         //Send response
-        res.json(post);
+        res.json(result);
 
     } catch (e) {
         // Print error on console
@@ -162,36 +162,6 @@ async function deleteById (req, res){
         });
     }
 
-}
-
-/**
- * Delete an existen Category by Categoryname
- * @param {*} req 
- * @param {*} res 
- */
-async function deleteByName (req, res){ 
-    try {
-        const { CategoryName } = req.params;
-
-        //Execute query
-        const deleted  = await model.destroy({
-            where: {
-                CategoryName: CategoryName
-            }
-        });
-
-        if (deleted) {
-            return res.status(204).send("Category deleted");
-        }
-
-    } catch (e) {
-        // Print error on console
-        console.log(e);
-        // Send error message as a response 
-        res.status(500).send({
-            message: "Some error occurred"
-        });
-    }
 }
 
 /**
@@ -202,13 +172,13 @@ async function deleteByName (req, res){
 async function deleteAll (req, res){
     try {
         //Execute query
-        const Categories = await model.destroy({
+        const result = await model.destroy({
             where: {}}
         ).then(function () {});
         
         //Send response
         res.json({
-            data: Categories
+            data: result
         });
 
     } catch (e) {
@@ -225,6 +195,5 @@ exports.createCategory = create;
 exports.findAllCategories = findAll; 
 exports.findOneCategory = findOne; 
 exports.updateCategory = update;
-exports.deleteCategoryByCategoryname = deleteByName;
 exports.deleteCategoryById = deleteById;
 exports.deleteAllCategories = deleteAll;

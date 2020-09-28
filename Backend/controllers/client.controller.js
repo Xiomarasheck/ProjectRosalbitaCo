@@ -1,10 +1,10 @@
 const models = require('./../models');
 
 /**
- * Creation of an user
- * @param {*} userObject JSON Object with User information
+ * Creation of an Client
+ * @param {*} ClientObject JSON Object with Client information
  */
-async function createUser (req, res) {
+async function createClient (req, res) {
     
     // CHECK IF THE REQUEST BODY IS EMPTY
     if (!req.body) {
@@ -15,16 +15,16 @@ async function createUser (req, res) {
     }
     
     // CREATING THE OBJECT TO PERSIST
-    const newUserObject = {
+    const newClientObject = {
         name: req.body.name,
+        lastName: req.body.lastName,
+        address: req.body.address,
         email: req.body.email,
-        password: req.body.password,
-        role_id: req.body.role_id,
-        status: req.body.status
+        status: req.body.status,
     }
     
     // EXECUTING THE CREATE QUERY - INSERT THE OBJECT INTO DATABASE 
-    let user =  await models.User.create(newUserObject).then (
+    let Client =  await models.Client.create(newClientObject).then (
         data => {
             res.send(data);
         }
@@ -41,12 +41,12 @@ async function createUser (req, res) {
 }
 
 /**
- * GEt all users
+ * GEt all Clients
  */
-async function findAllUsers (req, res){
+async function findAllClients (req, res){
     try {
         //Execute query
-        const users = await models.User.findAll({
+        const Clients = await models.Client.findAll({
             include: [
                 {
                   model: models.Role,
@@ -57,7 +57,7 @@ async function findAllUsers (req, res){
         
         //Send response
         res.json({
-            data: users
+            data: Clients
         });
 
     } catch (e) {
@@ -71,16 +71,16 @@ async function findAllUsers (req, res){
 }
 
 /**
- * Get user by id
+ * Get Client by id
  */
-async function findOneUser (req, res){
+async function findOneClient (req, res){
     try {
-        const { idUser } = req.params;
+        const { idClient } = req.params;
 
         //Execute query
-        const user = await models.User.findOne({
+        const Client = await models.Client.findOne({
             where: {
-                id: idUser
+                id: idClient
             },
             include: [
                 {
@@ -90,7 +90,7 @@ async function findOneUser (req, res){
             ]
         });
         //Send response
-        res.json(user);
+        res.json(Client);
 
     } catch (e) {
         // Print error on console
@@ -103,9 +103,9 @@ async function findOneUser (req, res){
 }
 
 /**
- * Update user
+ * Update Client
  */
-async function updateUser (req, res){
+async function updateClient (req, res){
     try {
 
         // CHECK IF THE REQUEST BODY IS EMPTY
@@ -116,19 +116,19 @@ async function updateUser (req, res){
             return;
         }
 
-        const {idUser} = req.params;
+        const {idClient} = req.params;
 
         //Execute query
-        const [ updated ] = await models.User.update(req.body ,{
+        const [ updated ] = await models.Client.update(req.body ,{
             where: {
-                id: idUser
+                id: idClient
             }
         });
 
         //Send response
         if (updated) {
-            const updatedUser = await models.User.findOne({ where: { id: idUser } });
-            return res.status(200).json({ user: updatedUser });
+            const updatedClient = await models.Client.findOne({ where: { id: idClient } });
+            return res.status(200).json({ Client: updatedClient });
         }
 
         throw new Error('Post not found');
@@ -144,23 +144,23 @@ async function updateUser (req, res){
 }
 
 /**
- * Delete an existen user by username
+ * Delete an existen Client by Clientname
  * @param {*} req 
  * @param {*} res 
  */
-async function deleteUserByUserName (req, res){ 
+async function deleteClientById (req, res){ 
     try {
-        const { userName } = req.params;
+        const { idClient } = req.params;
 
         //Execute query
-        const deleted  = await models.User.destroy({
+        const deleted  = await models.Client.destroy({
             where: {
-                name: userName
+                id: idClient
             }
         });
 
         if (deleted) {
-            return res.status(204).send("User deleted");
+            return res.status(204).send("Client deleted");
         }
 
     } catch (e) {
@@ -178,16 +178,16 @@ async function deleteUserByUserName (req, res){
  * @param {*} req 
  * @param {*} res 
  */
-async function deleteAllUsers (req, res){
+async function deleteAllClients (req, res){
     try {
         //Execute query
-        const users = await models.User.destroy({
+        const Clients = await models.Client.destroy({
             where: {}}
         ).then(function () {});
         
         //Send response
         res.json({
-            data: users
+            data: Clients
         });
 
     } catch (e) {
@@ -200,9 +200,9 @@ async function deleteAllUsers (req, res){
     }
 }
 
-exports.createUser = createUser; 
-exports.findAllUsers = findAllUsers; 
-exports.findOneUser = findOneUser; 
-exports.updateUser = updateUser;
-exports.deleteUserByUserName = deleteUserByUserName;
-exports.deleteAllUsers = deleteAllUsers;
+exports.createClient = createClient; 
+exports.findAllClients = findAllClients; 
+exports.findOneClient = findOneClient; 
+exports.updateClient = updateClient;
+exports.deleteClientById = deleteClientById;
+exports.deleteAllClients = deleteAllClients;

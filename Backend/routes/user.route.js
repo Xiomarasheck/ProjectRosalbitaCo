@@ -4,29 +4,26 @@ var router = express.Router();
 const userController = require ('../controllers/user.controller'); 
 
 /**
- * GET Route to list all categorys
+ * GET Route to list all Users
  */
 router.get('/', userController.findAllUsers);
 /**
- * GET Route to find category by id
+ * GET Route to find User by id
  */
 router.get('/:idUSer', userController.findOneUser);
 /**
- * category Route to create category
+ * User Route to create User
  */
-router.category ('/',userController.createUser);
+router.post('/',userController.createUser);
 /**
- * PUT Route to update an category by id
+ * PUT Route to update an User by id
  */
-router.put ('/:idUSer',userController.updateUser);
+router.put('/:idUSer',userController.updateUser);
 /**
- * DELETE Route to delete an category by categoryId
+ * DELETE Route to delete an User by UserId
  */
-router.delete ('/:idUSer',userController.deleteUserById);
-/**
- * DELETE Route to delete all categorys
- */
-router.delete ('/category',userController.deleteAllUsers);
+router.delete('/:userName',userController.deleteUserByUserName);
+
 
 module.exports = router;
   
