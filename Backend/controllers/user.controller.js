@@ -50,7 +50,7 @@ async function findAllUsers (req, res){
             include: [
                 {
                   model: models.Role,
-                  as: 'role_id'
+                  as: 'Role'
                 },
             ]
         });

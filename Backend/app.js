@@ -14,6 +14,8 @@ var categoriesRouter = require('./routes/category.route.js');
 var productRouter = require('./routes/product.route.js');
 var paymentMethodRouter = require('./routes/paymentMethod.route.js');
 var OrderRouter = require('./routes/order.route.js');
+var ClientRouter = require('./routes/client.route.js');
+var UserRouter = require('./routes/user.route.js');
 
 // Set up the express app
 var app = express();

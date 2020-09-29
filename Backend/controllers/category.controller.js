@@ -7,7 +7,7 @@ const model = models.Category;
  * @param {*} req 
  * @param {*} res 
  */
-async function create (req, res) {
+async function create(req, res) {
     
     // CHECK IF THE REQUEST BODY IS EMPTY
     if (!req.body) {
@@ -29,7 +29,6 @@ async function create (req, res) {
         data => {
             res.send(data);
         }
-    
 
     ).catch (
         e => {
