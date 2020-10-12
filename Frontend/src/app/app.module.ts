@@ -5,12 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './components/main/main.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { LogoComponent } from './common/logo/logo.component';
+import { LoaderComponent } from './common/loader/loader.component';
+import { ItemCardComponent } from './components/item-card/item-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    NavbarComponent
+    NavbarComponent,
+    LogoComponent,
+    LoaderComponent,
+    ItemCardComponent
   ],
   imports: [
     BrowserModule,
