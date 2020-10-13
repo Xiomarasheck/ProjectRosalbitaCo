@@ -1,1 +1,25 @@
-<p>item-card works!</p>
+<div class="card item-card">
+    <div class="img-cake-decorator mb-3">
+        <img src="../../../assets/images/cake-card.png" alt="Logo pastelito" class="w-100">
+    </div>
+    <div class="p-3">
+        <div class="img-card-container" [style.background-image]="'url(../../../assets/business/)'"></div>
+    </div>
+    <div class="card-body pt-1">
+        <h5 class="card-title text-red">Card title</h5>
+        <p class="card-text text-brown">Some quick example text to build on the card title and make up the bulk
+            of the card's
+            content.</p>
+        <div class="d-flex justify-content-between mb-3 align-items-center text-12px">
+            <label for="" class="mb-0">Porciones</label>
+            <select name="" id="" class="form-control-sm text-12px">
+                <option value="">10 porciones</option>
+                <option value="">20 porciones</option>
+                <option value="">30 porciones</option>
+            </select>
+        </div>
+        <div class="btn btn-sm bg-red btn-add-cart text-main btn-block">
+            <i class="fas fa-cart-plus"></i> Agregar
+        </div>
+    </div>
+</div>

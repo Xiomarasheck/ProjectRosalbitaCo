@@ -1,4 +1,13 @@
 /* Global styles */
+@font-face {
+    font-family: 'sofia-font';
+    src: url(./assets/fonts/Sofia-Regular.ttf);
+}
+
+body {
+    color: #3f3137;
+}
+
 .bg-main {
     background-color: #e9d5da;
 }
@@ -25,4 +34,8 @@
 
 .text-12px {
     font-size: 12px;
+}
+
+.font-sofia {
+    font-family: 'sofia-font';
 }

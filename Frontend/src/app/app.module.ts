@@ -9,6 +9,7 @@ import { LogoComponent } from './common/logo/logo.component';
 import { LoaderComponent } from './common/loader/loader.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { ContainerItemsCardsComponent } from './components/container-items-cards/container-items-cards.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
     LogoComponent,
     LoaderComponent,
     ItemCardComponent,
-    TopBarComponent
+    TopBarComponent,
+    ContainerItemsCardsComponent
   ],
   imports: [
     BrowserModule,

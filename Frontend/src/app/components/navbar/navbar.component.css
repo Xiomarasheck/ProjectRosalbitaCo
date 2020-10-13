@@ -20,13 +20,15 @@
 
 .link-main-menu:hover,
 .link-main-menu:focus,
-.link-main-menu:active {
+.link-main-menu:active,
+.link-main-menu.active {
     background-color: #f5e8eb;
 }
 
 .link-main-menu:hover>span,
 .link-main-menu:focus>span,
-.link-main-menu:active>span {
+.link-main-menu:active>span,
+.link-main-menu.active>span {
     transition: border 0.1s;
     border-bottom: 2px solid #3f3137;
 }
