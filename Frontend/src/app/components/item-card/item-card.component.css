@@ -1,0 +1,26 @@
+.card.item-card {
+    border: 1px dotted #a94b48;
+}
+
+.img-cake-decorator {
+    width: 50px;
+    position: absolute;
+    right: -18px;
+    top: -18px;
+}
+
+.img-card-container {
+    width: 100%;
+    max-height: 350px;
+    min-height: 350px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.btn-add-cart:hover,
+.btn-add-cart:focus,
+.btn-add-cart:active {
+    color: #e9d5da;
+    background-color: #a94b48f0;
+}

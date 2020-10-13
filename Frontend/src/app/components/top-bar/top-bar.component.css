@@ -1,0 +1,17 @@
+.top-bar .item-top-bar {
+    display: inline-block;
+}
+
+.link-top-bar {
+    display: inline;
+    cursor: pointer;
+    text-decoration: none;
+    color: #f5e8eb;
+}
+
+.link-top-bar:hover,
+.link-top-bar:focus,
+.link-top-bar:active {
+    transition: border 0.1s;
+    border-bottom: 1px solid #f5e8eb;
+}
