@@ -14,7 +14,11 @@ router.get('/:idUSer', userController.findOneUser);
 /**
  * User Route to create User
  */
-router.post('/',userController.createUser);
+router.post('/newUser',userController.createUser);
+/**
+ * User Route to authenticate
+ */
+router.post('/Authenticate',userController.authenticateUser);
 /**
  * PUT Route to update an User by id
  */

@@ -4,8 +4,7 @@ const models = require('./../models');
  * Creation of an user
  * @param {*} userObject JSON Object with User information
  */
-async function createUser (req, res) {
-    
+async function createUser (req, res) {   
     // CHECK IF THE REQUEST BODY IS EMPTY
     if (!req.body) {
         res.status(400).send({
@@ -13,31 +12,82 @@ async function createUser (req, res) {
         });
         return;
     }
-    
-    // CREATING THE OBJECT TO PERSIST
-    const newUserObject = {
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        role_id: req.body.role_id,
-        status: req.body.status
-    }
-    
-    // EXECUTING THE CREATE QUERY - INSERT THE OBJECT INTO DATABASE 
-    let user =  await models.User.create(newUserObject).then (
-        data => {
-            res.send(data);
-        }
-    ).catch (
-        e => {
-            // Print error on console
-            console.log(e);
-            // Send error message as a response 
-            res.status(500).send({
-                message: "Some error occurred"
+    // CHECK IF EMAIL IS ALREDY REGISTER
+    await models.User.findOne({
+        where: [
+            {
+              email: req.body.email
+            },
+        ]
+    }).then(async user=> {
+        if(user === null)
+        {
+            const newUserObject = {
+                name: req.body.name,
+                email: req.body.email,
+                password: req.body.password,
+                role_id: 2,
+                status: 1
+            }
+            let user =  await models.User.create(newUserObject).then (
+                () => {
+                    res.send("Usuario registrado correctamente");
+                }
+            ).catch(e => {
+                console.log(e);
+                res.status(500).send({
+                    message: "Some error occurred"
+                });
             });
         }
-    );
+        else
+        {
+            res.status(500).send({
+                message: "El usuario con email "+req.body.email+" ya se encuentra registrado"
+            });
+        }
+    }).catch( e => {
+        console.log(e);
+        res.status(500).send({
+            message: "Some error occurred"
+        });
+    });
+}
+
+async function authenticateUser(req, res){
+    if (!req.body) {
+        res.status(400).send({
+          message: "Request body is empty!!!!"
+        });
+        return;
+    }
+    await models.User.findOne({
+        where: [
+            {
+              email: req.body.email
+            },
+        ]
+    }).then(async user=> {
+        if(user === null)
+        {
+            res.status(500).send({
+                message: "El email no se encuentra registrado",
+            });    
+        }
+        else if(user.password !== req.body.password)
+        {
+            res.status(500).send({
+                message: "Usuario o contraseña incorrecta",
+            }); 
+        }else{
+            res.send("Usuario autenticado correctamente");
+        }
+    }).catch( e => {
+        console.log(e);
+        res.status(500).send({
+            message: "Some error occurred"
+        });
+    });
 }
 
 /**
@@ -206,3 +256,4 @@ exports.findOneUser = findOneUser;
 exports.updateUser = updateUser;
 exports.deleteUserByUserName = deleteUserByUserName;
 exports.deleteAllUsers = deleteAllUsers;
+exports.authenticateUser= authenticateUser;

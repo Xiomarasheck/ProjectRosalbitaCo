@@ -14,6 +14,8 @@ var categoriesRouter = require('./routes/category.route.js');
 var productRouter = require('./routes/product.route.js');
 var paymentMethodRouter = require('./routes/paymentMethod.route.js');
 var OrderRouter = require('./routes/order.route.js');
+var UserRouter = require('./routes/user.route.js');
+
 
 // Set up the express app
 var app = express();
@@ -31,8 +33,8 @@ app.use('/categories', categoriesRouter);
 app.use('/products', productRouter);
 app.use('/paymentMethod', paymentMethodRouter);
 app.use('/orders', OrderRouter);
-app.use('/clients', ClientRouter);
-app.use('/users', UserRouter);
+/* app.use('/clients', ClientRouter);*/
+app.use('/users', UserRouter); 
 
 
 module.exports = app;
