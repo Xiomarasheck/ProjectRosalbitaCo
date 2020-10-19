@@ -25,15 +25,18 @@ module.exports = {
         },
       },
       status: {
-        type: Sequelize.CHAR
+        type: Sequelize.CHAR,
+        defaultValue: 1
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)'),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)'),
       }
     });
   },
