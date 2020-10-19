@@ -58,7 +58,7 @@ async function findAll (req, res){
             include: [
                 {
                   model: models.Category,
-                  as: 'category_id'
+                  as: 'Category'
                 },
             ]
         });
