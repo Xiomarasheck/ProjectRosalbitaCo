@@ -16,12 +16,12 @@ export class ApiEndpointsService {
     action: string,
     isMockAPI: boolean = false
   ): string {
-    const UrlBuilder: UrlBuilder = new UrlBuilder(
+    const urlBuilder: UrlBuilder = new UrlBuilder(
       isMockAPI ?
         this.constatns.API_MOCK_ENDPOINT :
         this.constatns.API_ENDPOINT,
         action
     );
-    return UrlBuilder.toString();
+    return urlBuilder.toString();
   }
 }
