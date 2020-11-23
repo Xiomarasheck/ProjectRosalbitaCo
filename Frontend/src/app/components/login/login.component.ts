@@ -35,10 +35,10 @@ export class LoginComponent implements OnInit {
       password: this.password
     }
     this.userService.login(body).subscribe( response => {
-      if(response.message == "Usuario autenticado correctamente") {
+      if(response.status) {
         this.route.navigate(['main'])
       } else {
-        this.message = "Verifica tu usuario o contraseña"
+        this.message = response.message
         this.hasError = true;
       }
     });
