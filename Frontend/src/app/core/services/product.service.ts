@@ -9,6 +9,6 @@ export class ProductService {
   constructor(private http: HttpClient) {}
   
   getAllProducts() {
-    return this.http.get(`${environment.baseURL}/product`);
+    return this.http.get(`${environment.apiURL}/product`);
   }
 }

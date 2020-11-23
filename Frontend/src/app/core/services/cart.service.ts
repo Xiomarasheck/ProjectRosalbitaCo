@@ -8,18 +8,18 @@ export class CartService {
   constructor(private http: HttpClient) {}
   
   getAllProducts() {
-    return this.http.get(`${environment.baseURL}/product`);
+    return this.http.get(`${environment.apiURL}/product`);
   }
   addToCart(payload) {
-    return this.http.post(`${environment.baseURL}/cart`, payload);
+    return this.http.post(`${environment.apiURL}/cart`, payload);
   }
   getCartItems() {
-    return this.http.get(`${environment.baseURL}/cart`);
+    return this.http.get(`${environment.apiURL}/cart`);
   }
   increaseQty(payload) {
-    return this.http.post(`${environment.baseURL}/cart`, payload);
+    return this.http.post(`${environment.apiURL}/cart`, payload);
   }
   emptyCart() {
-    return this.http.delete(`${environment.baseURL}/cart/empty-cart`);
+    return this.http.delete(`${environment.apiURL}/cart/empty-cart`);
   }
 }
