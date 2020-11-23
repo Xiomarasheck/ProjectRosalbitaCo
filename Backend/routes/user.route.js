@@ -1,7 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var cors = require('cors');
 
 const userController = require ('../controllers/user.controller'); 
+
+router.use(cors({
+    allowedOrigins: [
+        '*'
+    ]
+}));
 
 /**
  * GET Route to list all Users

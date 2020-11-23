@@ -6,10 +6,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // Require cors 
-var cors = require('cors')
+var cors = require('cors');
 
 // This will be our application entry. We'll setup our server here.
-const http = require('http');
+//const http = require('http');
 
 // IMPORT ROUTES
 var indexRouter = require('./routes/index.js');
@@ -35,16 +35,13 @@ app.use(cors());
 app.options('*', cors());
 
 var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'http://35.232.127.70:12051,*');
+    res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method,HttpHeaders');
     res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,PUT,DELETE');
     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 }
-
-
 app.use(allowCrossDomain);
-
 
 
 //Set the routing routes to the each script
