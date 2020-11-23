@@ -10,9 +10,13 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   login(payload) {
-    const headers = new HttpHeaders()
-          .set('Content-Type', 'application/json');
+    const httpOptions = {
+      headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+      }),
+  };
 
-    return this.http.post(`${environment.apiURL}/users/Authenticate`, JSON.stringify(payload), {headers: headers});
+
+    return this.http.post(`${environment.apiURL}/users/Authenticate`, JSON.stringify(payload), httpOptions);
   }
 }
