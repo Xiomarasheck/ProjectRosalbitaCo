@@ -33,15 +33,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // use cors 
 app.use(cors());
 
-const corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200, // For legacy browser support
-    methods: "GET, POST, OPTIONS, PUT, DELETE"
-}
-
 app.use(cors(corsOptions));
 
-app.use(function(req, res, next) {
+app.all("/*", function(req, res, next){
     res.header('Access-Control-Allow-Origin', '*');
     res.header("Access-Control-Allow-Headers", 'Origin, X-Requested-With, Content-Type, Accept, content-type, application/json, application/x-www-form-urlencoded, X-HTTP-Method-Override');
     res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,PUT,DELETE');
