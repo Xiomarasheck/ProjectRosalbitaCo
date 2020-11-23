@@ -21,6 +21,7 @@
     "@angular/router": "^10.1.5",
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@popperjs/core": "^2.5.3",
+    "angular-webstorage-service": "^1.0.2",
     "bootstrap": "^4.5.3",
     "jquery": "^3.5.1",
     "rxjs": "~6.6.0",
