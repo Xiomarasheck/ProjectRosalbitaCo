@@ -29,7 +29,7 @@ export class UserService {
   };
 
 
-    return this.http.post(`${environment.apiURL}/users/Authenticate`, JSON.stringify(payload), httpOptions);
+    return this.http.post(`${environment.apiURL}/users/Authenticate/`, JSON.stringify(payload), httpOptions);
   }
 }
 
