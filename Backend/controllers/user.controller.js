@@ -31,12 +31,12 @@ async function createUser (req, res) {
             }
             let user =  await models.User.create(newUserObject).then (
                 () => {
-                    res.send("Usuario registrado correctamente");
+                    res.send({status: true, message:"Usuario registrado correctamente"});
                 }
             ).catch(e => {
                 console.log(e);
                 res.status(500).send({
-                    message: "Some error occurred"
+                    status: false, message:"Usuario no encontrado"
                 });
             });
         }
