@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // use cors 
 app.use(cors());
 
-app.use(cors(corsOptions));
+app.options('*', cors());
 
 app.use(function(req, res, next){
     // Website you wish to allow to connect
