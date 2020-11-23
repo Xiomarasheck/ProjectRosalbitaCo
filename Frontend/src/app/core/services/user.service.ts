@@ -10,10 +10,8 @@ export class UserService {
   private loginState = false;
 
 
-  constructor(private http: HttpClient,
-                      private currentUser:User
-                      ) 
-                      {  }
+  constructor(private http: HttpClient,private currentUser:User) { 
+  }
 
 
   public add(user: User) {
