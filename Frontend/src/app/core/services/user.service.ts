@@ -15,7 +15,7 @@ export class UserService {
 
 
   public add(user: User) {
-    return this.http.post(`${environment.apiURL}/users`, user);
+    return this.http.post(`${environment.apiURL}/users/newUser`, user);
   }
 
 
