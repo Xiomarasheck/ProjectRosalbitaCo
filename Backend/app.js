@@ -5,6 +5,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// Require cors 
+var cors = require('cors')
+
 // This will be our application entry. We'll setup our server here.
 const http = require('http');
 
@@ -25,6 +28,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// use cors 
+app.use(cors())
 
 
 //Set the routing routes to the each script
