@@ -80,7 +80,9 @@ async function authenticateUser(req, res){
                 message: "Usuario o contraseña incorrecta",
             }); 
         }else{
-            res.send("Usuario autenticado correctamente");
+            res.status(200).send({
+                message: "Usuario autenticado correctamente",
+            });
         }
     }).catch( e => {
         console.log(e);

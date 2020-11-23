@@ -33,13 +33,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 // use cors 
 app.use(cors());
 
-app.use(cors(corsOptions));
+app.options('*', cors());
 
-app.all("/*", function(req, res, next){
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header("Access-Control-Allow-Headers", 'Origin, X-Requested-With, Content-Type, Accept, content-type, application/json, application/x-www-form-urlencoded, X-HTTP-Method-Override');
-    res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,PUT,DELETE');
-    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+app.use(function(req, res, next){
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader("Access-Control-Allow-Headers", 'Origin, X-Requested-With, Content-Type, Accept, content-type, application/json, application/x-www-form-urlencoded, X-HTTP-Method-Override');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,PUT,DELETE');
+    res.setHeader('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
 
