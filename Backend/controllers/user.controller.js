@@ -70,23 +70,27 @@ async function authenticateUser(req, res){
     }).then(async user=> {
         if(user === null)
         {
-            res.status(500).send({
+            res.status(200).send({
+                status: false,
                 message: "El email no se encuentra registrado",
             });    
         }
         else if(user.password !== req.body.password)
         {
-            res.status(500).send({
+            res.status(200).send({
+                status: false,
                 message: "Usuario o contraseña incorrecta",
             }); 
         }else{
             res.status(200).send({
+                status: true,
                 message: "Usuario autenticado correctamente",
             });
         }
     }).catch( e => {
         console.log(e);
         res.status(500).send({
+            status: false,
             message: "Some error occurred"
         });
     });
