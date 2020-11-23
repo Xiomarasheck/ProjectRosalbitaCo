@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const cors = require("cors");
 
 const userController = require ('../controllers/user.controller'); 
-
+router.use(cors());
 
 /**
  * GET Route to list all Users
