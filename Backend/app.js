@@ -43,7 +43,7 @@ app.use(cors(corsOptions));
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
-    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+    res.header("Access-Control-Allow-Headers", 'Origin, X-Requested-With, Content-Type, Accept, content-type, application/json, application/x-www-form-urlencoded, X-HTTP-Method-Override');
     res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,PUT,DELETE');
     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
