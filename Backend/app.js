@@ -32,16 +32,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // use cors 
 app.use(cors());
-app.options('*', cors());
 
-var allowCrossDomain = function(req, res, next) {
+const corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200, // For legacy browser support
+    methods: "GET, POST, OPTIONS, PUT, DELETE"
+}
+
+app.use(cors(corsOptions));
+
+app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method,HttpHeaders');
+    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
     res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,PUT,DELETE');
     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
-}
-app.use(allowCrossDomain);
+});
 
 
 //Set the routing routes to the each script
