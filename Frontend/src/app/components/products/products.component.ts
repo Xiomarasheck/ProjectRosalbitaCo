@@ -6,14 +6,17 @@ import { CartService  } from '../../core/services/cart.service';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
-  products: Array<object> = [];
+  products: [] = [];
+
   constructor(private http: CartService) {}
+  
   _getProducts(): void {
     this.http.getAllProducts().subscribe((data: any) => {
       this.products = data.data;
       console.log(this.products);
     });
   }
+
   _addItemToCart( id, quantity): void {
     let payload = {
       productId: id,
@@ -28,3 +31,4 @@ export class ProductsComponent implements OnInit {
     this._getProducts();
   }
 }
+
