@@ -15,6 +15,7 @@ export class ItemCardComponent implements OnInit {
     this.products.getAllProducts().subscribe( response => {
       console.log(response);
       this.productList = response.data
+
     });
   }
 
