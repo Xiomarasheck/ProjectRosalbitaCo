@@ -10,6 +10,7 @@ export class ContainerItemsCardsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }
