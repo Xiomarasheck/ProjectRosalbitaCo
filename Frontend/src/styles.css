@@ -39,3 +39,7 @@ body {
 .font-sofia {
     font-family: 'sofia-font';
 }
+
+.bg-info {
+    background-color:  #e9d5da !important;
+}
